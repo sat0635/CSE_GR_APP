@@ -3,13 +3,13 @@
     <item
         android:id="@+id/action_people"
         android:icon="@drawable/baseline_people_black_24"
-        android:title="미니게임"/>
+        android:title="FnA"/>
     <item
         android:id="@+id/action_store"
         android:icon="@drawable/baseline_chat_black_24"
-        android:title="가맹점"/>
+        android:title="나의 졸업기준"/>
     <item
         android:id="@+id/action_account"
         android:icon="@drawable/baseline_account_circle_black_24"
-        android:title="개인정보"/>
+        android:title="내 학적"/>
 </menu>

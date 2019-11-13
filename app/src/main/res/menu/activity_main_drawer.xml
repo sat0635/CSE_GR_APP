@@ -9,34 +9,16 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="홈" />
         <item
-            android:id="@+id/nav_myPage"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="인증샷갤러리" />
-        <item
             android:id="@+id/nav_missionPlace"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="미션장소목록" />
+            android:title="질문하기" />
         <item
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="랭킹" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:title="답변확인하기" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
-        </menu>
-    </item>
+
 
 </menu>

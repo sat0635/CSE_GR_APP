@@ -70,7 +70,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edit_border"
-                            android:text="명소" />
+                            android:text="비교과활동" />
 
 
                         <TextView
@@ -78,7 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
 
-                            android:text="주변에 있는 명소를 알아볼까요?"
+                            android:text="졸업에 필요한 인턴, 영어성적 등을 볼 수 있습니다."
                             android:textSize="10dp" />
 
                     </LinearLayout>
@@ -106,7 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edit_border"
-                            android:text="미션" />
+                            android:text="교과활동" />
 
 
                         <TextView
@@ -114,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
 
-                            android:text="미션을 시작해볼까요?"
+                            android:text="졸업에 필요한 학점과 과목을 볼 수 있습니다."
                             android:textSize="10dp" />
 
                     </LinearLayout>
@@ -127,10 +127,7 @@
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"></LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="오늘의 인증샷" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
