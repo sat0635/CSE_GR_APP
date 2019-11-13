@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">CSE_GR_APP</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="rc_color">splash_background</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="sun_refresh_style">Sun refresh style</string>
+    <string name="jet_refresh_style">Jet refresh style</string>
+    <string name="polite_message">Wait a moment please. Breathe deeply and watch beautiful animation.</string>
+    <string name="trip_to_india">Trip to India</string>
+    <string name="trip_to_italy">Trip to Italy</string>
+    <string name="trip_to_indonesia">Trip to Indonesia</string>
+    <string name="base_url">http://106.10.35.40:8000/</string>
 </resources>
