@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GrActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -98,8 +99,8 @@ public class MainActivity extends AppCompatActivity
 
                         return true;
                     case R.id.action_account:
-
-
+                        Intent intent_act = new Intent(getApplicationContext(), ExcelActivity.class);
+                        startActivity(intent_act);
                         return true;
                 }
                 return false;
