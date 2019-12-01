@@ -85,6 +85,14 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+        place_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NongrActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //이벤트 불러오기
 

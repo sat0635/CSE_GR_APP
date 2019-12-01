@@ -93,7 +93,7 @@ public class GrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Gr>> call = service.getGr(User.userName);
+            Call<List<Gr>> call = service.getSubject(User.userName);
 
             call.enqueue(new Callback<List<Gr>>() {
 

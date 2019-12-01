@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.study.gst.cse_gr_app.Adapter.GrAdapter;
+import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
@@ -34,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NongrActivity extends AppCompatActivity{
 
-    private GrAdapter adapter = new GrAdapter();
+    private NongrAdapter adapter = new NongrAdapter();
     private Retrofit retrofit;
     private ArrayList<Gr> items = new ArrayList<>();
 
@@ -93,21 +94,19 @@ public class NongrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Gr>> call = service.getGr("1");
+            Call<List<Gr>> call = service.getNonSubject(User.userName);
 
             call.enqueue(new Callback<List<Gr>>() {
-
                 @Override
                 public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
                     List<Gr> grs = response.body();
                     for (Gr gr : grs) {
-                        Log.d("TAG","lopal2"+gr.getContent());
                         items.add(gr);
+                        Log.d("TAG","lopalNongr for"+gr.getContent());
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
                     recyclerView.setLayoutManager(new LinearLayoutManager(NongrActivity.this, LinearLayoutManager.VERTICAL,false));
                     recyclerView.setAdapter(adapter);
-                    Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);
                 }
 

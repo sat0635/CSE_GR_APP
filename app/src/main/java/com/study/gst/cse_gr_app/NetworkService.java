@@ -18,8 +18,12 @@ public interface NetworkService {
     Call<Result> sendExcel(
             @Part MultipartBody.Part filePart
     );
-    @GET("api/gr/{userId}/")
-    Call<List<Gr>> getGr(
-            @Path("userId") String userId
+    @GET("api/subject/{userEmail}/")
+    Call<List<Gr>> getSubject(
+            @Path("userEmail") String userEmail
+    );
+    @GET("api/nonsubject/{userEmail}/")
+    Call<List<Gr>> getNonSubject(
+            @Path("userEmail") String userEmail
     );
 }
