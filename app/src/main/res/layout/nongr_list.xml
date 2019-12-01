@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-android:layout_height="wrap_content">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
 
@@ -13,8 +13,8 @@ android:layout_height="wrap_content">
             android:layout_margin="10dp"
             android:id="@+id/subject_class"
             android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:text="전공"/>
+            android:layout_height="50dp"
+            android:text="카테고리"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@ android:layout_height="wrap_content">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="현재학점"
+                    android:text="현재"
                     android:textColor="#000000"/>
                 <TextView
                     android:id="@+id/test2"
@@ -47,7 +47,7 @@ android:layout_height="wrap_content">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="35dp"
-                android:text=" | "/>
+                android:text="    |  "/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@ android:layout_height="wrap_content">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="채워야할 학점"
+                    android:text="졸업요건"
                     android:textColor="#000000"/>
                 <TextView
                     android:id="@+id/test4"

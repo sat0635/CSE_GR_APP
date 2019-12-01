@@ -13,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.study.gst.cse_gr_app.Adapter.GrAdapter;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Subject;
+import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +93,7 @@ public class GrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Gr>> call = service.getGr("1");
+            Call<List<Gr>> call = service.getGr(User.userName);
 
             call.enqueue(new Callback<List<Gr>>() {
 
@@ -98,10 +101,13 @@ public class GrActivity extends AppCompatActivity{
                 public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
                     List<Gr> grs = response.body();
                     for (Gr gr : grs) {
+                        Log.d("TAG","lopal2"+gr.getContent());
                         items.add(gr);
                     }
-
-
+                    RecyclerView recyclerView = findViewById(R.id.recycler_view);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(GrActivity.this, LinearLayoutManager.VERTICAL,false));
+                    recyclerView.setAdapter(adapter);
+                    Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);
                 }
 

@@ -29,11 +29,29 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull GrAdapter.ViewHolder viewHolder, int position) {
         Gr item = items.get(position);
-        Log.d("TAG","lopal"+item.getContent());
-        viewHolder.tvTest1.setText("내 학점");
-        viewHolder.tvTest2.setText("111");
-        viewHolder.tvTest1.setText("총 학점");
-        viewHolder.tvTest4.setText("112");
+        String content = item.getContent();
+        String category = content.split(":")[0];
+        if (category.compareTo("MAJOR") == 0){
+            viewHolder.tvSubjectClass.setText("전공");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText("75");
+        }
+        else if (category.compareTo("BASEMAJOR") == 0){
+            viewHolder.tvSubjectClass.setText("전공기반");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText("22");
+        }
+        else if (category.compareTo("ENGINEER_CUL") == 0){
+            viewHolder.tvSubjectClass.setText("기본소양");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText("15");
+        }
     }
 
     @Override
@@ -48,13 +66,15 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTest1,tvTest2,tvTest3,tvTest4;
+        TextView tvSubjectClass,tvTest1,tvTest2,tvTest3,tvTest4;
+
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvTest1 = itemView.findViewById(R.id.test2);
+            tvSubjectClass = itemView.findViewById(R.id.subject_class);
+            tvTest1 = itemView.findViewById(R.id.test1);
             tvTest2 = itemView.findViewById(R.id.test2);
-            tvTest3 = itemView.findViewById(R.id.test2);
+            tvTest3 = itemView.findViewById(R.id.test3);
             tvTest4 = itemView.findViewById(R.id.test4);
         }
     }

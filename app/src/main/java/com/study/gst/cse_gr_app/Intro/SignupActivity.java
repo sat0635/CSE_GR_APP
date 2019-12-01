@@ -119,6 +119,7 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
             profile.setImageURI(data.getData()); // 가운데 뷰를 바꿈
             imageUri = data.getData();  // 이미지 경로 원본

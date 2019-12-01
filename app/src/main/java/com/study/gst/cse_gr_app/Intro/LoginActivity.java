@@ -23,6 +23,7 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.study.gst.cse_gr_app.MainActivity;
 import com.study.gst.cse_gr_app.R;
+import com.study.gst.cse_gr_app.model.User;
 
 //로그인페이지
 public class LoginActivity extends AppCompatActivity {
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(user != null){
                     //로그인
+                    User.userName=user.getEmail();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
