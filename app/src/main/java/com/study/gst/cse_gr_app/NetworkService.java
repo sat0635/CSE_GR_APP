@@ -26,4 +26,8 @@ public interface NetworkService {
     Call<List<Gr>> getNonSubject(
             @Path("userEmail") String userEmail
     );
+    @GET("api/useremail/{userEmail}/")
+    Call<Result> sendUserEmail(
+            @Path("userEmail") String userEmail
+    );
 }

@@ -5,9 +5,11 @@ package com.study.gst.cse_gr_app.Intro;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,10 +30,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
+import com.study.gst.cse_gr_app.Config;
+import com.study.gst.cse_gr_app.GrActivity;
+import com.study.gst.cse_gr_app.NetworkService;
 import com.study.gst.cse_gr_app.R;
+import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 //회원가입 페이지
@@ -101,6 +116,7 @@ public class SignupActivity extends AppCompatActivity {
                                         FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
+                                                new JSONTask().execute();
                                                 SignupActivity.this.finish();
                                             }
                                         });
@@ -126,6 +142,51 @@ public class SignupActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    public class JSONTask extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            init();
+            NetworkService service = retrofit.create(NetworkService.class);
+            Call<Result> call = service.sendUserEmail(email.getText().toString());
+
+            call.enqueue(new Callback<Result>() {
+
+                @Override
+                public void onResponse(Call<Result> call, Response<Result> response) {
+                    Result resultValue = response.body();
+                    Log.d("r","lopalsendEmail "+resultValue.getResultValue());
+                }
+
+                @Override
+                public void onFailure(Call<Result> call, Throwable t) {
+                    Log.d("tag", "lopal fail");
+                }
+            });
+            return "done";
+        }
+
+        //doInBackground메소드가 끝나면 여기로 와서 텍스트뷰의 값을 바꿔준다.
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.i("result", "lopal onpostExecute");
+
+
+
+        }
+
+    }
+
+
+
+    public void init() {
+        // GSON 컨버터를 사용하는 REST 어댑터 생성
+        retrofit = new Retrofit.Builder()
+                .baseUrl(Config.base_url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 

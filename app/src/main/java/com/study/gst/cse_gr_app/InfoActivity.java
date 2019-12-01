@@ -3,64 +3,60 @@ package com.study.gst.cse_gr_app;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.ContentUris;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.icu.text.IDNA;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.storage.StorageReference;
-import com.study.gst.cse_gr_app.model.Result;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class ExcelActivity extends AppCompatActivity {
+public class InfoActivity extends AppCompatActivity {
     private static final int READ_REQUEST_CODE = 42;
     private ImageView excel;
-    private Retrofit retrofit;
-
+    private TextView textViewMajor;
+    private Button update1;
+    private Button update2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_excel);
+        setContentView(R.layout.activity_info);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -101,7 +97,7 @@ public class ExcelActivity extends AppCompatActivity {
         );
 
 
-        excel = (ImageView) findViewById(R.id.signupActivity_imageview_profile);
+        excel = (ImageView) findViewById(R.id.infoActivity_imageview);
         excel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +108,105 @@ public class ExcelActivity extends AppCompatActivity {
                 //엑셀파일만
                 intent.setDataAndType(uri, "*/*");
                 startActivityForResult(intent, READ_REQUEST_CODE);
+            }
+        });
+        textViewMajor = (TextView)findViewById(R.id.infoActivity_major);
+        textViewMajor.setText("심화컴퓨터");
+        update1 = (Button) findViewById(R.id.infoActivity_update1);
+        update1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final List<String> selectedItems = new ArrayList<String>();
+                final String[] items = new String[]{"심화컴퓨터","글로벌SW융합","SW연계/융합"};
+                AlertDialog.Builder dialog = new AlertDialog.Builder(InfoActivity.this);
+                dialog  .setTitle("관심분야를 선택하세요")
+                        .setMultiChoiceItems(items,
+                                new boolean[]{false, false, false, false, false, false, false, false},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if(isChecked) {
+                                            Toast.makeText(InfoActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                                            selectedItems.add(items[which]);
+                                        } else {
+                                            selectedItems.remove(items[which]);
+                                        }
+                                    }
+                                })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                                if( selectedItems.size() == 0) {
+                                    Toast.makeText(InfoActivity.this, "선택된 관심분야가 없습니다", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    String items = "";
+                                    for (String selectedItem : selectedItems) {
+                                        items += (selectedItem + ", ");
+                                    }
+
+                                    selectedItems.clear();
+
+                                    items = items.substring(0, items.length() - 2);
+                                    Toast.makeText(InfoActivity.this, items, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }).create().show();
+            }
+        });
+        update2 = (Button) findViewById(R.id.infoActivity_update2);
+        update2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final List<String> selectedItems = new ArrayList<String>();
+                String[] items = null;
+                if( textViewMajor.getText() =="심화컴퓨터"){
+                    items = new String[]{"ABEEK","아무것도아님"};
+                }
+                else if( textViewMajor.getText() == "글로벌SW융합"){
+                    items = new String[]{"다중전공 트랙","해외복수학위 트랙","학석사연계 트랙"};
+                }
+                else if (textViewMajor.getText() == "SW연계/융합"){
+                    items = new String[]{"연계전공","융합전공","복수전공","부전공"};
+                }
+                AlertDialog.Builder dialog = new AlertDialog.Builder(InfoActivity.this);
+                final String[] finalItems = items;
+                dialog  .setTitle("관심분야를 선택하세요")
+                        .setMultiChoiceItems(finalItems,
+                                new boolean[]{false, false, false, false, false, false, false, false},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if(isChecked) {
+                                            Toast.makeText(InfoActivity.this, finalItems[which], Toast.LENGTH_SHORT).show();
+                                            selectedItems.add(finalItems[which]);
+                                        } else {
+                                            selectedItems.remove(finalItems[which]);
+                                        }
+                                    }
+                                })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if( selectedItems.size() == 0) {
+                                    Toast.makeText(InfoActivity.this, "선택된 관심분야가 없습니다", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    String items = "";
+                                    for (String selectedItem : selectedItems) {
+                                        items += (selectedItem + ", ");
+                                    }
+
+                                    selectedItems.clear();
+
+                                    items = items.substring(0, items.length() - 2);
+                                    Toast.makeText(InfoActivity.this, items, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }).create().show();
             }
         });
     }

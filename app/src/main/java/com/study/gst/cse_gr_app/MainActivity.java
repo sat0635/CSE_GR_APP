@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
                         return true;
                     case R.id.action_account:
-                        Intent intent_act = new Intent(getApplicationContext(), ExcelActivity.class);
+                        Intent intent_act = new Intent(getApplicationContext(), InfoActivity.class);
                         startActivity(intent_act);
                         return true;
                 }
