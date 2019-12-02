@@ -1,6 +1,7 @@
 package com.study.gst.cse_gr_app;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Result;
+import com.study.gst.cse_gr_app.model.User;
 
 import java.util.List;
 
@@ -29,5 +30,17 @@ public interface NetworkService {
     @GET("api/useremail/{userEmail}/")
     Call<Result> sendUserEmail(
             @Path("userEmail") String userEmail
+    );
+
+    @GET("api/userinfo/{userEmail}/")
+    Call<List<User>> getUserInfo(
+            @Path("userEmail") String userEmail
+    );
+
+    @GET("api/userinfou/{userEmail}/{major}/{track}/")
+    Call<List<User>>updateUserInfo(
+            @Path("userEmail") String userEmail,
+            @Path("major") String major,
+            @Path("track") String track
     );
 }

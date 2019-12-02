@@ -133,7 +133,7 @@
                     android:layout_weight="1"
                     >
                     <TextView
-                        android:id="@+id/infoActivity_detail_major"
+                        android:id="@+id/infoActivity_track"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

@@ -101,6 +101,7 @@ public class NongrActivity extends AppCompatActivity{
                 public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
                     List<Gr> grs = response.body();
                     for (Gr gr : grs) {
+
                         items.add(gr);
                         Log.d("TAG","lopalNongr for"+gr.getContent());
                     }
