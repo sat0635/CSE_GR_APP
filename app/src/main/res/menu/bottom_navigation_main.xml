@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_people"
+        android:id="@+id/action_faq"
         android:icon="@drawable/baseline_people_black_24"
-        android:title="FnA"/>
+        android:title="FAQ"/>
     <item
         android:id="@+id/action_store"
         android:icon="@drawable/baseline_chat_black_24"
-        android:title="나의 졸업기준"/>
+        android:title="전체 전공 졸업요건"/>
     <item
         android:id="@+id/action_account"
         android:icon="@drawable/baseline_account_circle_black_24"

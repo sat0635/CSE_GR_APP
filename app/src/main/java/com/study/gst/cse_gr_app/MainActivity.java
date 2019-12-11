@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity
                                                                      return true;
                                                                      //인증샷 갤러리
                                                                  }  else if (id == R.id.nav_missionPlace) {
-
-
+                                                                     Intent intent_act = new Intent(getApplicationContext(), QActivity.class);
+                                                                     startActivity(intent_act);
                                                                      return true;
 
                                                                  } else if (id == R.id.nav_ranking) {
-
-
+                                                                     Intent intent_act = new Intent(getApplicationContext(), QaActivity.class);
+                                                                     startActivity(intent_act);
                                                                      return true;
 
                                                                  }
@@ -102,12 +102,14 @@ public class MainActivity extends AppCompatActivity
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent_act;
                 switch (item.getItemId()) {
-                    case R.id.action_store:
-
+                    case R.id.action_faq:
+                        intent_act = new Intent(getApplicationContext(), FaqActivity.class);
+                        startActivity(intent_act);
                         return true;
                     case R.id.action_account:
-                        Intent intent_act = new Intent(getApplicationContext(), InfoActivity.class);
+                        intent_act = new Intent(getApplicationContext(), InfoActivity.class);
                         startActivity(intent_act);
                         return true;
                 }
@@ -162,8 +164,8 @@ public class MainActivity extends AppCompatActivity
             return true;
         }  else if (id == R.id.nav_missionPlace) {
 
-            //  Intent intent_act = new Intent(getApplicationContext(), MissionPlace.class);
-            //startActivity(intent_act);
+            Intent intent_act = new Intent(getApplicationContext(), QaActivity.class);
+            startActivity(intent_act);
             return true;
 
         } else if (id == R.id.nav_ranking) {

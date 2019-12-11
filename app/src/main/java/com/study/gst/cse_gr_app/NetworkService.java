@@ -1,5 +1,6 @@
 package com.study.gst.cse_gr_app;
 import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.model.Question;
 import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;
 
@@ -27,9 +28,17 @@ public interface NetworkService {
     Call<List<Gr>> getNonSubject(
             @Path("userEmail") String userEmail
     );
+
     @GET("api/useremail/{userEmail}/")
     Call<Result> sendUserEmail(
             @Path("userEmail") String userEmail
+    );
+
+    @GET("api/question/{userEmail}/{title}/{desc}/")
+    Call<Result> sendQuestion(
+            @Path("userEmail") String userEmail,
+            @Path("title") String title,
+            @Path("desc") String desc
     );
 
     @GET("api/userinfo/{userEmail}/")
@@ -42,5 +51,12 @@ public interface NetworkService {
             @Path("userEmail") String userEmail,
             @Path("major") String major,
             @Path("track") String track
+    );
+
+    @GET("api/qa/")
+    Call<List<Question>>getQuestion(
+    );
+    @GET("api/faq/")
+    Call<List<Question>>getFaq(
     );
 }
