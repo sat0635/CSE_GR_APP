@@ -101,7 +101,7 @@ public class GrActivity extends AppCompatActivity{
                 public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
                     List<Gr> grs = response.body();
                     for (Gr gr : grs) {
-                        Log.d("TAG","lopal2"+gr.getContent());
+                        Log.d("TAG","lopal2"+gr.getCategory());
                         items.add(gr);
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);

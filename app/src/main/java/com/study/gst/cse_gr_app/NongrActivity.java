@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.study.gst.cse_gr_app.Adapter.GrAdapter;
 import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
 import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.model.Nongr;
 import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
 
@@ -37,7 +38,7 @@ public class NongrActivity extends AppCompatActivity{
 
     private NongrAdapter adapter = new NongrAdapter();
     private Retrofit retrofit;
-    private ArrayList<Gr> items = new ArrayList<>();
+    private ArrayList<Nongr> items = new ArrayList<>();
 
 
     @Override
@@ -94,16 +95,16 @@ public class NongrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Gr>> call = service.getNonSubject(User.userName);
+            Call<List<Nongr>> call = service.getNonSubject(User.userName);
 
-            call.enqueue(new Callback<List<Gr>>() {
+            call.enqueue(new Callback<List<Nongr>>() {
                 @Override
-                public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
-                    List<Gr> grs = response.body();
-                    for (Gr gr : grs) {
+                public void onResponse(Call<List<Nongr>> call, Response<List<Nongr>> response) {
+                    List<Nongr> nongrs = response.body();
+                    for (Nongr nongr : nongrs) {
 
-                        items.add(gr);
-                        Log.d("TAG","lopalNongr for"+gr.getContent());
+                        items.add(nongr);
+                        Log.d("TAG","lopalNongr for"+nongr.getContent());
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
                     recyclerView.setLayoutManager(new LinearLayoutManager(NongrActivity.this, LinearLayoutManager.VERTICAL,false));
@@ -112,7 +113,7 @@ public class NongrActivity extends AppCompatActivity{
                 }
 
                 @Override
-                public void onFailure(Call<List<Gr>> call, Throwable t) {
+                public void onFailure(Call<List<Nongr>> call, Throwable t) {
                     Log.d("tag", "lopal fail");
                 }
             });

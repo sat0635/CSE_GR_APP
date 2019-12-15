@@ -1,5 +1,6 @@
 package com.study.gst.cse_gr_app;
 import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.model.Nongr;
 import com.study.gst.cse_gr_app.model.Question;
 import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;
@@ -20,12 +21,19 @@ public interface NetworkService {
     Call<Result> sendExcel(
             @Part MultipartBody.Part filePart
     );
+
+    @GET("api/usernonsubjectu/{userEmail}/{category}/{content}/")
+    Call<Result> updateUserNonSubject(
+            @Path("userEmail") String userEmail,
+            @Path("category") String category,
+            @Path("content") String content
+    );
     @GET("api/subject/{userEmail}/")
     Call<List<Gr>> getSubject(
             @Path("userEmail") String userEmail
     );
     @GET("api/nonsubject/{userEmail}/")
-    Call<List<Gr>> getNonSubject(
+    Call<List<Nongr>> getNonSubject(
             @Path("userEmail") String userEmail
     );
 

@@ -29,29 +29,48 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull GrAdapter.ViewHolder viewHolder, int position) {
         Gr item = items.get(position);
-        String content = item.getContent();
-        String category = content.split(":")[0];
+        String category = item.getCategory();
+        String grade = String.valueOf(item.getGrade());
+        //심화컴퓨터
         if (category.compareTo("MAJOR") == 0){
             viewHolder.tvSubjectClass.setText("전공");
             viewHolder.tvTest1.setText("내 학점");
-            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText("75");
         }
         else if (category.compareTo("BASEMAJOR") == 0){
             viewHolder.tvSubjectClass.setText("전공기반");
             viewHolder.tvTest1.setText("내 학점");
-            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText("22");
         }
         else if (category.compareTo("ENGINEER_CUL") == 0){
             viewHolder.tvSubjectClass.setText("기본소양");
             viewHolder.tvTest1.setText("내 학점");
-            viewHolder.tvTest2.setText(content.split(":")[1]);
+            viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText("15");
         }
+
+        //글로벌SW융합
+        if (category.compareTo("SW_MAJOR") == 0){
+            viewHolder.tvSubjectClass.setText("전공");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText("51");
+        }
+        else if (category.compareTo("SW_CUL") == 0){
+            viewHolder.tvSubjectClass.setText("교양");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText("24~42");
+        }
+
+
     }
 
     @Override

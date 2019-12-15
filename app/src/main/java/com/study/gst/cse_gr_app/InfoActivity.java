@@ -167,7 +167,7 @@ public class InfoActivity extends AppCompatActivity {
                     items = new String[]{"ABEEK","아무것도아님"};
                 }
                 else if( textViewMajor.getText().toString().compareTo("글로벌SW융합")==0){
-                    items = new String[]{"다중전공 트랙","해외복수학위 트랙","학석사연계 트랙"};
+                    items = new String[]{"다중전공","해외복수학위","학석사연계"};
                 }
                 else if (textViewMajor.getText().toString().compareTo("SW연계융합")==0){
                     items = new String[]{"연계전공","융합전공","복수전공","부전공"};
