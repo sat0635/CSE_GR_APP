@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -37,7 +39,7 @@ public class GrActivity extends AppCompatActivity{
     private GrAdapter adapter = new GrAdapter();
     private Retrofit retrofit;
     private ArrayList<Gr> items = new ArrayList<>();
-
+    private Button btSubjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,15 @@ public class GrActivity extends AppCompatActivity{
                                                          }
 
         );
+        btSubjects=(Button) findViewById(R.id.subjects);
+        btSubjects.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GrActivity.this, SubjectActivity.class);
+                startActivity(intent);
+            }
+        });
         new JSONTask().execute();
     }
 

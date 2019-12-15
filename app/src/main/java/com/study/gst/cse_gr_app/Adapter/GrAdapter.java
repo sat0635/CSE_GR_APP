@@ -1,9 +1,11 @@
 package com.study.gst.cse_gr_app.Adapter;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,40 +32,81 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
     public void onBindViewHolder(@NonNull GrAdapter.ViewHolder viewHolder, int position) {
         Gr item = items.get(position);
         String category = item.getCategory();
-        String grade = String.valueOf(item.getGrade());
+        String grade = item.getGrade().split(":")[0];
+        Log.d("TAG","lopal Bind"+item.getGrade());
+        String requirement = item.getGrade().split(":")[1];
         //심화컴퓨터
-        if (category.compareTo("MAJOR") == 0){
-            viewHolder.tvSubjectClass.setText("전공");
+
+
+        if (category.compareTo("TOTAL") == 0){
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("총 학점");
             viewHolder.tvTest1.setText("내 학점");
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
-            viewHolder.tvTest4.setText("75");
+            viewHolder.tvTest4.setText(requirement);
+        }
+        else if (category.compareTo("MAJOR") == 0){
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("전공");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText(requirement);
         }
         else if (category.compareTo("BASEMAJOR") == 0){
-            viewHolder.tvSubjectClass.setText("전공기반");
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("전공기반");
             viewHolder.tvTest1.setText("내 학점");
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
-            viewHolder.tvTest4.setText("22");
+            viewHolder.tvTest4.setText(requirement);
         }
         else if (category.compareTo("ENGINEER_CUL") == 0){
-            viewHolder.tvSubjectClass.setText("기본소양");
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("기본소양");
             viewHolder.tvTest1.setText("내 학점");
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
-            viewHolder.tvTest4.setText("15");
+            viewHolder.tvTest4.setText(requirement);
         }
 
         //글로벌SW융합
         if (category.compareTo("SW_MAJOR") == 0){
-            viewHolder.tvSubjectClass.setText("전공");
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("전공");
             viewHolder.tvTest1.setText("내 학점");
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText("51");
         }
         else if (category.compareTo("SW_CUL") == 0){
-            viewHolder.tvSubjectClass.setText("교양");
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement.split("~")[0])  || Integer.parseInt(grade) > Integer.parseInt(requirement.split("~")[1])  ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+            viewHolder.btContent.setText("교양");
             viewHolder.tvTest1.setText("내 학점");
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
@@ -84,13 +127,14 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView tvSubjectClass,tvTest1,tvTest2,tvTest3,tvTest4;
+        Button btContent;
+        TextView tvTest1,tvTest2,tvTest3,tvTest4;
 
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvSubjectClass = itemView.findViewById(R.id.subject_class);
+            btContent= itemView.findViewById(R.id.subject_class);
+
             tvTest1 = itemView.findViewById(R.id.test1);
             tvTest2 = itemView.findViewById(R.id.test2);
             tvTest3 = itemView.findViewById(R.id.test3);

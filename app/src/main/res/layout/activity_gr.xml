@@ -30,10 +30,17 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
+        <Button
+            android:layout_below="@id/appbar"
+            android:id="@+id/subjects"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="과목 확인하기">
 
+        </Button>
 
         <LinearLayout
-            android:layout_below="@id/appbar"
+            android:layout_below="@id/subjects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

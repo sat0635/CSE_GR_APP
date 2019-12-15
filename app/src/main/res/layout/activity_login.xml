@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="300dp"
         android:background="@drawable/logo"/>
 
     <RelativeLayout
@@ -40,7 +40,7 @@
             android:layout_above="@+id/guide_vert"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="61dp"
             android:background="@drawable/edit_border"
             android:gravity="center"
             android:hint="Email or ID"
@@ -48,14 +48,13 @@
             android:textColorHint="#6e6e6e"
             android:textSize="15dp" />
 
-
         <EditText
             android:id="@+id/loginActivity_edittext_password"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/guide_vert"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="-73dp"
+            android:layout_marginTop="-53dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/edit_border"
             android:gravity="center"
@@ -73,7 +72,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginBottom="191dp"
+            android:layout_marginBottom="134dp"
             android:gravity="center"
             android:text="Login"
             android:textColor="#ffffff" />
@@ -84,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/guide_center"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="126dp"
+            android:layout_marginBottom="64dp"
             android:text="Register"
             android:textAllCaps="false"
             android:textColor="#ffffff" />

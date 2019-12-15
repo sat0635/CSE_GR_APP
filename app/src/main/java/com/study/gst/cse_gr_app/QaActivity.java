@@ -95,7 +95,7 @@ public class QaActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Question>> call = service.getQuestion();
+            Call<List<Question>> call = service.getMyQuestion(User.userName);
 
             call.enqueue(new Callback<List<Question>>() {
 

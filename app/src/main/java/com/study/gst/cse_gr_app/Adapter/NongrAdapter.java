@@ -1,7 +1,5 @@
 package com.study.gst.cse_gr_app.Adapter;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,12 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.study.gst.cse_gr_app.CustomDialog;
-import com.study.gst.cse_gr_app.MainActivity;
-import com.study.gst.cse_gr_app.NongrActivity;
-import com.study.gst.cse_gr_app.QActivity;
+import com.study.gst.cse_gr_app.NonSubjectDialog;
 import com.study.gst.cse_gr_app.R;
-import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Nongr;
 
 import java.util.ArrayList;
@@ -105,10 +99,10 @@ public class NongrAdapter extends RecyclerView.Adapter<NongrAdapter.ViewHolder> 
 
                 @Override
                 public void onClick(View view) {
-                    CustomDialog customDialog = new CustomDialog(view.getContext());
+                    NonSubjectDialog nonSubjectDialog = new NonSubjectDialog(view.getContext());
                     // 커스텀 다이얼로그를 호출한다.
                     // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                    customDialog.callFunction(btContent.getText().toString());
+                    nonSubjectDialog.callFunction(btContent.getText().toString());
 
 
 

@@ -3,6 +3,7 @@ import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Nongr;
 import com.study.gst.cse_gr_app.model.Question;
 import com.study.gst.cse_gr_app.model.Result;
+import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public interface NetworkService {
     );
     @GET("api/subject/{userEmail}/")
     Call<List<Gr>> getSubject(
+            @Path("userEmail") String userEmail
+    );
+    @GET("api/mysubject/{userEmail}/")
+    Call<List<Subject>> getMySubject(
             @Path("userEmail") String userEmail
     );
     @GET("api/nonsubject/{userEmail}/")
@@ -61,8 +66,9 @@ public interface NetworkService {
             @Path("track") String track
     );
 
-    @GET("api/qa/")
-    Call<List<Question>>getQuestion(
+    @GET("api/qa/{userEmail}/")
+    Call<List<Question>>getMyQuestion(
+            @Path("userEmail") String userEmail
     );
     @GET("api/faq/")
     Call<List<Question>>getFaq(

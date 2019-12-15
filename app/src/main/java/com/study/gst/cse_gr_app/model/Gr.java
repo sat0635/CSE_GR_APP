@@ -4,15 +4,15 @@ public class Gr {
 
     private int id;
     private String CATEGORY;
-    private int GRADE;
+    private  String  GRADE;
 
-    public Gr(int id, String CATEGORY, int GRADE) {
+    public Gr(int id, String CATEGORY, String GRADE) {
         this.id = id;
         this.CATEGORY = CATEGORY;
         this.GRADE = GRADE;
     }
 
     public String getCategory(){return CATEGORY; }
-    public int getGrade(){return GRADE;}
+    public String getGrade(){return GRADE;}
     public int getId(){return id;}
 }
