@@ -85,10 +85,7 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText(requirement);
-        }
-
-        //글로벌SW융합
-        if (category.compareTo("SW_MAJOR") == 0){
+        }else if (category.compareTo("SW_MAJOR") == 0){ // 글로벌 SW 융합
             if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
                 viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
             }else{
@@ -111,6 +108,63 @@ public class GrAdapter extends RecyclerView.Adapter<GrAdapter.ViewHolder>  {
             viewHolder.tvTest2.setText(grade);
             viewHolder.tvTest3.setText("졸업요건 학점");
             viewHolder.tvTest4.setText("24~42");
+        }else if (category.compareTo("SW_CONN_MAJOR")==0){
+
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+
+            viewHolder.btContent.setText("총 학점");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText(requirement);
+
+        }else if (category.compareTo("SW_CONN_COMMON")==0){
+
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+
+            viewHolder.btContent.setText("총 학점");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText(requirement);
+
+        }
+        else if (category.compareTo("SW_CONN_CUL")==0){
+
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+
+            viewHolder.btContent.setText("총 학점");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText(requirement);
+
+        } else if (category.compareTo("SW_CONN_TOTAL")==0){
+
+            if (Integer.parseInt(grade) < Integer.parseInt(requirement) ){
+                viewHolder.btContent.setBackgroundColor(Color.rgb(200,0,0));
+            }else{
+                viewHolder.btContent.setBackgroundColor(Color.rgb(0,200,0));
+            }
+
+            viewHolder.btContent.setText("총 학점");
+            viewHolder.tvTest1.setText("내 학점");
+            viewHolder.tvTest2.setText(grade);
+            viewHolder.tvTest3.setText("졸업요건 학점");
+            viewHolder.tvTest4.setText(requirement);
+
         }
 
 
