@@ -44,9 +44,11 @@ public class InfoActivity extends AppCompatActivity {
     TextView textViewMajor;
     TextView textViewTrack;
     private String S1="";
-    private String S2="";
+    private String S2="N";
+    private String S3="N";
     Button update1;
     Button update2;
+    Button update3;
     private Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +108,9 @@ public class InfoActivity extends AppCompatActivity {
                 //엑셀파일만
                 intent.setDataAndType(uri, "*/*");
                 startActivityForResult(intent, READ_REQUEST_CODE);
-            }
-        });
 
+    }
+});
 
         update1 = (Button) findViewById(R.id.infoActivity_update1);
         update1.setOnClickListener(new View.OnClickListener(){
@@ -214,6 +216,65 @@ public class InfoActivity extends AppCompatActivity {
                         }).create().show();
             }
         });
+
+        update3 = (Button) findViewById(R.id.infoActivity_update3);
+        update3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final List<String> selectedItems = new ArrayList<String>();
+                Log.d("TAG","lopal update3 onclick"+textViewMajor.getText().toString());
+                String[] items = null;
+
+                if( textViewTrack.getText().toString().compareTo("복수전공")==0){
+                    items = new String[]{"플랫폼소프트웨어","데이터과학","인간중심소프트웨어","글로벌소프트웨어융합ㅈ"};
+                }
+                else if (textViewTrack.getText().toString().compareTo("부전공")==0){
+                    items = new String[]{"N"};
+                }
+                AlertDialog.Builder dialog = new AlertDialog.Builder(InfoActivity.this);
+                final String[] finalItems = items;
+                dialog  .setTitle("관심분야를 선택하세요")
+                        .setMultiChoiceItems(finalItems,
+                                new boolean[]{false, false, false, false, false, false, false, false},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if(isChecked) {
+                                            Toast.makeText(InfoActivity.this, finalItems[which], Toast.LENGTH_SHORT).show();
+                                            selectedItems.add(finalItems[which]);
+                                        } else {
+                                            selectedItems.remove(finalItems[which]);
+                                        }
+                                    }
+                                })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if( selectedItems.size() == 0) {
+                                    Toast.makeText(InfoActivity.this, "선택된 관심분야가 없습니다", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    String items = "";
+                                    for (String selectedItem : selectedItems) {
+                                        items += (selectedItem + ", ");
+                                    }
+
+                                    selectedItems.clear();
+
+                                    items = items.substring(0, items.length() - 2);
+                                    Toast.makeText(InfoActivity.this, items, Toast.LENGTH_SHORT).show();
+                                    S1=textViewMajor.getText().toString();
+                                    S2=textViewTrack.getText().toString();
+                                    S3=items;
+                                    new JSONTaskInfo().execute();
+                                }
+
+                            }
+                        }).create().show();
+            }
+        });
+
     }
 
     @Override
@@ -262,7 +323,7 @@ public class InfoActivity extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<User>> call = service.updateUserInfo(User.userName,S1,S2);
+            Call<List<User>> call = service.updateUserInfo(User.userName,S1,S2,S3);
 
             call.enqueue(new Callback<List<User>>() {
 

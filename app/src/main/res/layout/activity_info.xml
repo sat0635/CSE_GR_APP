@@ -158,6 +158,50 @@
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="세부 전공">
+                </Button>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:id="@+id/infoActivity_track_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="다중전공 트랙 카테고리"
+                        android:textAlignment="center">
+
+                    </TextView>
+                    <Button
+                        android:id="@+id/infoActivity_update3"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_weight="1.5"
+                        android:layout_gravity="center"
+                        android:text="수정하기"
+                        >
+
+                    </Button>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></LinearLayout>
         </LinearLayout>
 
 

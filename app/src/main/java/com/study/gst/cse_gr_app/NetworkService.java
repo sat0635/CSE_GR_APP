@@ -59,11 +59,12 @@ public interface NetworkService {
             @Path("userEmail") String userEmail
     );
 
-    @GET("api/userinfou/{userEmail}/{major}/{track}/")
+    @GET("api/userinfou/{userEmail}/{major}/{track}/{trackCategory}/")
     Call<List<User>>updateUserInfo(
             @Path("userEmail") String userEmail,
             @Path("major") String major,
-            @Path("track") String track
+            @Path("track") String track,
+            @Path("trackCategory") String trackCategory
     );
 
     @GET("api/qa/{userEmail}/")
