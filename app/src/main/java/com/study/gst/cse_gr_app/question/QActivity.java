@@ -1,10 +1,7 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.question;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

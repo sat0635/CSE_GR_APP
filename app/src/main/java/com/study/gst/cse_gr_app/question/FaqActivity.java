@@ -1,10 +1,8 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.question;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -17,11 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
-import com.study.gst.cse_gr_app.Adapter.GrAdapter;
-import com.study.gst.cse_gr_app.Adapter.QaAdapter;
-import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.Adapter.FaqAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Question;
-import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
@@ -34,9 +32,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class QaActivity extends AppCompatActivity{
+public class FaqActivity extends AppCompatActivity{
 
-    private QaAdapter adapter = new QaAdapter();
+    private FaqAdapter adapter = new FaqAdapter();
     private Retrofit retrofit;
     private ArrayList<Question> items = new ArrayList<>();
 
@@ -44,7 +42,7 @@ public class QaActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qa);
+        setContentView(R.layout.activity_faq);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -95,7 +93,7 @@ public class QaActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Question>> call = service.getMyQuestion(User.userName);
+            Call<List<Question>> call = service.getFaq();
 
             call.enqueue(new Callback<List<Question>>() {
 
@@ -106,7 +104,7 @@ public class QaActivity extends AppCompatActivity{
                         items.add(qa);
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(QaActivity.this, LinearLayoutManager.VERTICAL,false));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(FaqActivity.this, LinearLayoutManager.VERTICAL,false));
                     recyclerView.setAdapter(adapter);
                     Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);

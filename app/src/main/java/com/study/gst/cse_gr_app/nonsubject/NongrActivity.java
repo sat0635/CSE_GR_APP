@@ -1,10 +1,8 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.nonsubject;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -17,12 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
-import com.study.gst.cse_gr_app.Adapter.FaqAdapter;
-import com.study.gst.cse_gr_app.Adapter.GrAdapter;
-import com.study.gst.cse_gr_app.Adapter.QaAdapter;
-import com.study.gst.cse_gr_app.model.Gr;
-import com.study.gst.cse_gr_app.model.Question;
-import com.study.gst.cse_gr_app.model.Subject;
+import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
+import com.study.gst.cse_gr_app.model.Nongr;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
@@ -35,17 +32,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class FaqActivity extends AppCompatActivity{
+public class NongrActivity extends AppCompatActivity{
 
-    private FaqAdapter adapter = new FaqAdapter();
+    private NongrAdapter adapter = new NongrAdapter();
     private Retrofit retrofit;
-    private ArrayList<Question> items = new ArrayList<>();
+    private ArrayList<Nongr> items = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);
+        setContentView(R.layout.activity_nongr);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -96,25 +93,25 @@ public class FaqActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Question>> call = service.getFaq();
+            Call<List<Nongr>> call = service.getNonSubject(User.userName);
 
-            call.enqueue(new Callback<List<Question>>() {
-
+            call.enqueue(new Callback<List<Nongr>>() {
                 @Override
-                public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
-                    List<Question> qas = response.body();
-                    for (Question qa : qas) {
-                        items.add(qa);
+                public void onResponse(Call<List<Nongr>> call, Response<List<Nongr>> response) {
+                    List<Nongr> nongrs = response.body();
+                    for (Nongr nongr : nongrs) {
+
+                        items.add(nongr);
+                        Log.d("TAG","lopalNongr for"+nongr.getContent());
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(FaqActivity.this, LinearLayoutManager.VERTICAL,false));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(NongrActivity.this, LinearLayoutManager.VERTICAL,false));
                     recyclerView.setAdapter(adapter);
-                    Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);
                 }
 
                 @Override
-                public void onFailure(Call<List<Question>> call, Throwable t) {
+                public void onFailure(Call<List<Nongr>> call, Throwable t) {
                     Log.d("tag", "lopal fail");
                 }
             });

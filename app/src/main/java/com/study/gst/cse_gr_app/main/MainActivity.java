@@ -1,4 +1,4 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.main;
 
 
 import android.content.Intent;
@@ -18,6 +18,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.study.gst.cse_gr_app.R;
+import com.study.gst.cse_gr_app.nonsubject.NongrActivity;
+import com.study.gst.cse_gr_app.question.FaqActivity;
+import com.study.gst.cse_gr_app.question.QActivity;
+import com.study.gst.cse_gr_app.question.QaActivity;
+import com.study.gst.cse_gr_app.subject.GrActivity;
 
 import retrofit2.Retrofit;
 

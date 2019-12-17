@@ -1,11 +1,12 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.subject;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.study.gst.cse_gr_app.Adapter.GrAdapter;
-import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Gr;
-import com.study.gst.cse_gr_app.model.Nongr;
-import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
@@ -34,17 +35,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class NongrActivity extends AppCompatActivity{
+public class GrActivity extends AppCompatActivity{
 
-    private NongrAdapter adapter = new NongrAdapter();
+    private GrAdapter adapter = new GrAdapter();
     private Retrofit retrofit;
-    private ArrayList<Nongr> items = new ArrayList<>();
-
+    private ArrayList<Gr> items = new ArrayList<>();
+    private Button btSubjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nongr);
+        setContentView(R.layout.activity_gr);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -84,7 +85,15 @@ public class NongrActivity extends AppCompatActivity{
                                                          }
 
         );
+        btSubjects=(Button) findViewById(R.id.subjects);
+        btSubjects.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GrActivity.this, SubjectActivity.class);
+                startActivity(intent);
+            }
+        });
         new JSONTask().execute();
     }
 
@@ -95,25 +104,26 @@ public class NongrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Nongr>> call = service.getNonSubject(User.userName);
+            Call<List<Gr>> call = service.getSubject(User.userName);
 
-            call.enqueue(new Callback<List<Nongr>>() {
+            call.enqueue(new Callback<List<Gr>>() {
+
                 @Override
-                public void onResponse(Call<List<Nongr>> call, Response<List<Nongr>> response) {
-                    List<Nongr> nongrs = response.body();
-                    for (Nongr nongr : nongrs) {
-
-                        items.add(nongr);
-                        Log.d("TAG","lopalNongr for"+nongr.getContent());
+                public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
+                    List<Gr> grs = response.body();
+                    for (Gr gr : grs) {
+                        Log.d("TAG","lopal2"+gr.getCategory());
+                        items.add(gr);
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(NongrActivity.this, LinearLayoutManager.VERTICAL,false));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(GrActivity.this, LinearLayoutManager.VERTICAL,false));
                     recyclerView.setAdapter(adapter);
+                    Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);
                 }
 
                 @Override
-                public void onFailure(Call<List<Nongr>> call, Throwable t) {
+                public void onFailure(Call<List<Gr>> call, Throwable t) {
                     Log.d("tag", "lopal fail");
                 }
             });

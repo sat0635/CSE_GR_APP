@@ -1,4 +1,4 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.main;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.study.gst.cse_gr_app.model.Gr;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.User;
 
 

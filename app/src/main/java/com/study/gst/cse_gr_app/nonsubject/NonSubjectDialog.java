@@ -1,4 +1,4 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.nonsubject;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.gst.cse_gr_app.Adapter.NongrAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;

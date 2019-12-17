@@ -1,4 +1,4 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.setting;
 import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Nongr;
 import com.study.gst.cse_gr_app.model.Question;

@@ -1,13 +1,9 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.question;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,9 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
-import com.study.gst.cse_gr_app.Adapter.GrAdapter;
-import com.study.gst.cse_gr_app.model.Gr;
-import com.study.gst.cse_gr_app.model.Subject;
+import com.study.gst.cse_gr_app.Adapter.QaAdapter;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
+import com.study.gst.cse_gr_app.model.Question;
 import com.study.gst.cse_gr_app.model.User;
 
 import java.util.ArrayList;
@@ -34,17 +32,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class GrActivity extends AppCompatActivity{
+public class QaActivity extends AppCompatActivity{
 
-    private GrAdapter adapter = new GrAdapter();
+    private QaAdapter adapter = new QaAdapter();
     private Retrofit retrofit;
-    private ArrayList<Gr> items = new ArrayList<>();
-    private Button btSubjects;
+    private ArrayList<Question> items = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gr);
+        setContentView(R.layout.activity_qa);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -84,15 +82,7 @@ public class GrActivity extends AppCompatActivity{
                                                          }
 
         );
-        btSubjects=(Button) findViewById(R.id.subjects);
-        btSubjects.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GrActivity.this, SubjectActivity.class);
-                startActivity(intent);
-            }
-        });
         new JSONTask().execute();
     }
 
@@ -103,26 +93,25 @@ public class GrActivity extends AppCompatActivity{
         protected String doInBackground(String... urls) {
             init();
             NetworkService service = retrofit.create(NetworkService.class);
-            Call<List<Gr>> call = service.getSubject(User.userName);
+            Call<List<Question>> call = service.getMyQuestion(User.userName);
 
-            call.enqueue(new Callback<List<Gr>>() {
+            call.enqueue(new Callback<List<Question>>() {
 
                 @Override
-                public void onResponse(Call<List<Gr>> call, Response<List<Gr>> response) {
-                    List<Gr> grs = response.body();
-                    for (Gr gr : grs) {
-                        Log.d("TAG","lopal2"+gr.getCategory());
-                        items.add(gr);
+                public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
+                    List<Question> qas = response.body();
+                    for (Question qa : qas) {
+                        items.add(qa);
                     }
                     RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(GrActivity.this, LinearLayoutManager.VERTICAL,false));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(QaActivity.this, LinearLayoutManager.VERTICAL,false));
                     recyclerView.setAdapter(adapter);
                     Log.d("TAG","lopal ID: "+ User.userName);
                     adapter.setItems(items);
                 }
 
                 @Override
-                public void onFailure(Call<List<Gr>> call, Throwable t) {
+                public void onFailure(Call<List<Question>> call, Throwable t) {
                     Log.d("tag", "lopal fail");
                 }
             });

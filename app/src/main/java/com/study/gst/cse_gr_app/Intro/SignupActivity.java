@@ -18,8 +18,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,15 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
-import com.study.gst.cse_gr_app.Config;
-import com.study.gst.cse_gr_app.GrActivity;
-import com.study.gst.cse_gr_app.NetworkService;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
 import com.study.gst.cse_gr_app.R;
-import com.study.gst.cse_gr_app.model.Gr;
 import com.study.gst.cse_gr_app.model.Result;
 import com.study.gst.cse_gr_app.model.User;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

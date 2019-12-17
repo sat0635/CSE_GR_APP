@@ -13,14 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubjectActivity"></activity>
-        <activity android:name=".FaqActivity" />
-        <activity android:name=".QActivity" />
-        <activity android:name=".QaActivity" />
-        <activity android:name=".AllTrackGr" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".GrActivity" />
-        <activity android:name=".NongrActivity" />
+        <activity android:name=".subject.SubjectActivity"></activity>
+        <activity android:name=".question.FaqActivity" />
+        <activity android:name=".question.QActivity" />
+        <activity android:name=".question.QaActivity" />
+        <activity android:name=".main.InfoActivity" />
+        <activity android:name=".subject.GrActivity" />
+        <activity android:name=".nonsubject.NongrActivity" />
         <activity android:name=".Intro.SignupActivity" />
         <activity android:name=".Intro.LoginActivity" />
         <activity
@@ -33,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

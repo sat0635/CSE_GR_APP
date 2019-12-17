@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.study.gst.cse_gr_app.MainActivity;
+import com.study.gst.cse_gr_app.main.MainActivity;
 import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.User;
 

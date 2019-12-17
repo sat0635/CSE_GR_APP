@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.study.gst.cse_gr_app.NonSubjectDialog;
+import com.study.gst.cse_gr_app.nonsubject.NonSubjectDialog;
 import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Nongr;
 

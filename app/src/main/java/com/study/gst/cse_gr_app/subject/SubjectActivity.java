@@ -1,4 +1,4 @@
-package com.study.gst.cse_gr_app;
+package com.study.gst.cse_gr_app.subject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.study.gst.cse_gr_app.Adapter.SubjectAdapter;
-import com.study.gst.cse_gr_app.model.Subject;
+import com.study.gst.cse_gr_app.setting.Config;
+import com.study.gst.cse_gr_app.setting.NetworkService;
+import com.study.gst.cse_gr_app.R;
 import com.study.gst.cse_gr_app.model.Subject;
 import com.study.gst.cse_gr_app.model.User;
 
