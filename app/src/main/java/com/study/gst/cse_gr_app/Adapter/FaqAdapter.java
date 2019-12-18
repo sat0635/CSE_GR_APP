@@ -36,6 +36,7 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder>  {
         viewHolder.ivImage1.setImageResource(R.drawable.user);
         viewHolder.tvText1.setText(item.getTitle());
         viewHolder.tvText2.setText(item.getDesc());
+        viewHolder.tvText3.setText(item.getAnswer());
     }
 
     @Override
@@ -49,13 +50,14 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.ViewHolder>  {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvText1,tvText2;
+        TextView tvText1,tvText2,tvText3;
         ImageView ivImage1;
         ViewHolder(View itemView) {
             super(itemView);
             ivImage1 = itemView.findViewById(R.id.imageView1);
             tvText1 = itemView.findViewById(R.id.textView1);
             tvText2 = itemView.findViewById(R.id.textView2);
+            tvText3 = itemView.findViewById(R.id.textView3);
         }
     }
 }
